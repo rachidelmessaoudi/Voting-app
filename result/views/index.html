@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="catsvsdogs">
+  <head>
+    <meta charset="utf-8">
+    <title>Result</title>
+    <base href="/index.html">
+    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+    <meta name="keywords" content="docker-compose, docker, stack">
+    <meta name="author" content="Docker">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+  <body id="body" ng-controller="statsCtrl" >
+    
+    <h3 id="h3">Résultat des votes</h3>
+    <div class="carreau">
+        <div id="aPercent">{{aPercent | number:1}}% <span> GRINI YOUSSEF</span></div>
+        <div id="bPercent">{{bPercent | number:1}}% <span> ELMESSAOUDI RACHID</span></div>
+        <div>
+            <canvas id="pie-chart" width="900" height="550"></canvas>
+        </div>
+    </div>
+
+
+    <div id="result">
+      <span ng-if="total == 0">Number of votes : No votes yet</span>
+      <span ng-if="total == 1">Number of votes : {{total}} vote</span>
+      <span ng-if="total >= 2">Number of votes : {{total}} votes</span>
+    </div>
+
+    <script>
+        var a = parseInt(document.getElementById("aPercent").innerHTML);
+        var b = parseInt(document.getElementById("bPercent").innerHTML);
+        function cercle(){
+            new Chart(document.getElementById("pie-chart"), {
+            type: 'pie',
+            data: {
+            labels: ["GRINI YOUSSEF", "ELMESSAOUDI RACHID"],
+            datasets: [{
+                backgroundColor: ["#ff0000", "#00ff00"],
+                data: [a,b]
+            }]}
+            });
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            setInterval(() => {
+                var newa = parseInt(document.getElementById("aPercent").innerHTML);
+                var newb = parseInt(document.getElementById("bPercent").innerHTML);
+                if(newa!=a){
+                    a=newa;
+                    b=newb;
+                    cercle();
+                } 
+            }, 1000);
+            });
+
+    </script>
+
+    <script src="socket.io.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

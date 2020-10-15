@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GRINI vs ELMESSAOUDI</title>
+    <base href="/index.html">
+    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+    <meta name="keywords" content="docker-compose, docker, stack">
+    <meta name="author" content="Tutum dev team">
+    <link rel='stylesheet' href="{{ url_for('static',filename='stylesheets/style.css') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  </head>
+  <body id="body">
+
+    <h3 id="title">Les élections de Président de gourpe de Projet de Fin d'année</h3>
+    <p class="aftervote" id="result"></p>
+    <div class="container">
+      <div class="row election1">
+          <img src="../static/images/me.jpg" id="img" alt="image grini youssef">
+          <div class="nom">
+            <h4>{{option_a}}</h4>
+            <p>pour mieux gérer le projet <br/> voter pour moi</p>
+          </div>
+          <p id="espace"></p>
+          <form id="choice" name='form' method="POST" action="/">
+            <button id="a" type="submit" name="vote" class="btn btn-primary" value="a">voter</button>
+          </form>
+      </div>
+
+      <div class="row election2">
+        <img src="../static/images/rachid.jpg" alt="image rachid">
+        <div class="nom">
+          <h4>{{option_b}}</h4>
+          <p>pour mieux gérer le projet <br/> voter pour moi</p>
+        </div>
+        <form id="choice" name='form' method="POST" action="/">
+          <button id="b" type="submit" name="vote" class="btn btn-primary" value="b">voter</button>
+        </form>
+      </div>
+
+      <div id="tip" class="row">
+        (Tip: you can change your vote)
+      </div>
+      <div id="hostname" class="row">
+        Processed by container ID {{hostname}}
+      </div>
+
+    </div>
+    <!-- <div id="content-container">
+      <div id="content-container-center">
+        <h3>Les élections de Président de gourpe de Projet de Fin d'année</h3>
+        <form id="choice" name='form' method="POST" action="/">
+          <button id="a" type="submit" name="vote" class="a" value="a">{{option_a}}</button>
+          <button id="b" type="submit" name="vote" class="b" value="b">{{option_b}}</button>
+        </form>
+        <div id="tip">
+          (Tip: you can change your vote)
+        </div>
+        <div id="hostname">
+          Processed by container ID {{hostname}}
+        </div>
+      </div>
+    </div> -->
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    {% if vote %}
+    <script>
+      var vote = "{{vote}}";
+
+      if(vote == "a"){
+        $("#a").prop('disabled', true);
+        $("#a").replaceWith('<i class="fa fa-check-circle" id="a"></i>');
+        $("#result").replaceWith('<p class="aftervote" id="result"><i class="fa fa-check-circle"></i> tu as voté pour GRINI YOUSSEF</p>');
+      }
+      if(vote == "b"){
+        $("#b").prop('disabled', true);
+        $("#b").replaceWith('<i class="fa fa-check-circle" id="b"></i>');
+        $("#result").replaceWith('<p class="aftervote" id="result"><i class="fa fa-check-circle"></i> tu as voté pour ELMESSAOUDI RACHID</p>')
+      }
+    </script>
+    {% endif %}
+  </body>
+</html>
