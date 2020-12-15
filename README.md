@@ -9,16 +9,19 @@ This application consists of 5 microservices:
 * Postgresql : database backed by a Docker volume
 * Result-app : webapp which shows the results of the voting in real time
 
-![](https://user-images.githubusercontent.com/62344505/98979367-92aba800-251b-11eb-91a4-30e587ee7f2c.png)
 
 
 <h1>Voting Interface </h1>
 
-![](https://user-images.githubusercontent.com/62344505/98979777-0ea5f000-251c-11eb-89b8-8d9d00a7145a.PNG)
+
+
+<h1>Voting Interface </h1>
+
+
 
 <h1>Result Interface</h1>
 
-![](https://user-images.githubusercontent.com/62344505/98981416-339b6280-251e-11eb-9563-dafbe64d857e.PNG)
+
 
 <h1>Getting started</h1>
 
